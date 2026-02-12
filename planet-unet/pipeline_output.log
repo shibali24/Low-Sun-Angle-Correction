@@ -1,0 +1,65 @@
+================================================================================
+ICEBERG DETECTION PIPELINE - END TO END
+================================================================================
+
+================================================================================
+STEP 1: Training U-Net Model
+================================================================================
+
+⏳ Training U-Net model...
+   Training directory: ./Sentinel-dense-train-test-split-all/train
+   Test directory: ./Sentinel-dense-train-test-split-all/test
+   Model parameters: layers=4, features_root=64, dropout=0.75
+   Training iterations: 60, Epochs: 10
+   Force train: enabled
+✓ Model training completed successfully!
+
+================================================================================
+STEP 2: Running Batch Predictions
+================================================================================
+
+⏳ Running predictions on test data...
+   Test data: ./Sentinel-dense-train-test-split-all/test
+   Output: ./Sentinel-dense-train-test-split-all/test/XXX-SRB-validation.p
+✓ Predictions generated successfully!
+
+================================================================================
+STEP 3: Generating iceberg_polygons.geojson
+================================================================================
+
+⏳ Loading predictions from ./Sentinel-dense-train-test-split-all/test/XXX-SRB-validation.p...
+   Loaded 24 predictions
+
+⏳ Extracting iceberg polygons...
+   Confidence threshold: 0.75
+✓ Generated 0 iceberg polygons
+✓ Saved to iceberg_polygons.geojson
+
+================================================================================
+STEP 4: Creating Overlay Tiles with Polygon Outlines
+================================================================================
+
+⏳ Loading polygons from iceberg_polygons.geojson...
+   Loaded polygons for 0 images
+
+⏳ Drawing polygon overlays on test images...
+
+✓ Created 0 overlay tiles
+✓ Saved to overlay_tiles/
+
+================================================================================
+PIPELINE SUMMARY
+================================================================================
+Train Model............................. ✓ SUCCESS
+Generate Predictions.................... ✓ SUCCESS
+Generate GeoJSON........................ ✓ SUCCESS
+Create Overlays......................... ✓ SUCCESS
+
+================================================================================
+✓ PIPELINE COMPLETED SUCCESSFULLY!
+
+📍 Output files:
+   - Trained model: ./out_paths/out_path_20191008-adam_l4-f64-dp75_Sentinel/
+   - Predictions: ./Sentinel-dense-train-test-split-all/test/XXX-SRB-validation.p
+   - Polygons: iceberg_polygons.geojson
+   - Overlay tiles: overlay_tiles/
