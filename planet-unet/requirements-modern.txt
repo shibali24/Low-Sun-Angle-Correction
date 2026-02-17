@@ -2,8 +2,8 @@
 # Updated versions for better compatibility while maintaining functionality
 
 # Core dependencies (cannot change)
-tensorflow==1.15.5  # Last TF 1.x version, better modern compatibility than 1.5.0
-numpy==1.18.5       # Compatible with TF 1.15
+tensorflow[and-cuda]==2.15.0  # TF 2.x with bundled CUDA 12.2, compat.v1 shim for TF 1.x code
+numpy==1.24.0                 # Compatible with TF 2.15
 
 # Image processing (actively used)
 opencv-python==4.5.5.64  # Upgraded from 3.4.5.20, APIs are backward compatible

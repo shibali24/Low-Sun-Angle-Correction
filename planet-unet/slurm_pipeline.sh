@@ -11,18 +11,15 @@
 set -euo pipefail
 
 # -------- EDIT THESE FOR YOUR CLUSTER --------
-PROJECT_DIR="${PROJECT_DIR:-$HOME/planet-unet}"
-CONDA_SH="${CONDA_SH:-$HOME/miniconda3/etc/profile.d/conda.sh}"
+PROJECT_DIR="${PROJECT_DIR:-$HOME/Low-Sun-Angle-Correction/planet-unet}"
 CONDA_ENV="${CONDA_ENV:-planet-unet}"
 # ---------------------------------------------
 
 mkdir -p "${PROJECT_DIR}/logs"
 cd "${PROJECT_DIR}"
 
-if [ -f "${CONDA_SH}" ]; then
-  source "${CONDA_SH}"
-  conda activate "${CONDA_ENV}"
-fi
+module load miniconda3
+conda activate "${CONDA_ENV}"
 
 echo "Host: $(hostname)"
 echo "Start: $(date)"

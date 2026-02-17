@@ -29,7 +29,8 @@ from skimage.segmentation import find_boundaries
 import logging
 import matplotlib.pyplot as plt
 
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 from tf_unet import util
 from tf_unet.layers import (weight_variable, weight_variable_devonc, bias_variable,
