@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  planet-unet:
+    build: .
+    image: planet-unet:python36
+    container_name: planet-unet-dev
+    volumes:
+      # Mount the project directory so changes persist
+      - .:/workspace
+    working_dir: /workspace
+    # Keep container running
+    stdin_open: true
+    tty: true
+    # If you have NVIDIA GPU and want to use tensorflow-gpu:
+    # runtime: nvidia
+    # environment:
+    #   - NVIDIA_VISIBLE_DEVICES=all

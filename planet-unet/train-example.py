@@ -16,11 +16,14 @@ sys.path.append(ROOT_DIR)
 from tf_unet import unet, util, image_util
 
 #MODEL_DIR = './out_paths/out_path_20190815-adam_l4-f64-dp75'
-MODEL_DIR = './out_paths/out_path_20191008-adam_l4-f64-dp75_Sentinel'
-TRAIN_DATA_DIR = "./Sentinel-dense-train-test-split-all/train"
-TEST_DATA_DIR = "./Sentinel-dense-train-test-split-all/test"
+MODEL_DIR = os.environ.get("MODEL_DIR", "./out_paths/out_path_20191008-adam_l4-f64-dp75_Sentinel")
+TRAIN_DATA_DIR = os.environ.get("TRAIN_DATA_DIR", "./Sentinel-dense-train-test-split-all/train")
+TEST_DATA_DIR = os.environ.get("TEST_DATA_DIR", "./Sentinel-dense-train-test-split-all/test")
 
-RESTORE_PATH = os.path.abspath("./out_paths/out_path_20190815-adam_l4-f64-dp75")
+RESTORE = os.environ.get("RESTORE", "0") == "1"
+RESTORE_PATH = os.path.abspath(os.environ.get("RESTORE_PATH", "./out_paths/out_path_20190815-adam_l4-f64-dp75"))
+TRAINING_ITERS = int(os.environ.get("TRAINING_ITERS", "100"))
+EPOCHS = int(os.environ.get("EPOCHS", "50"))
 
 train_data_provider = image_util.ImageDataProviderWithWeights(TRAIN_DATA_DIR + "/*.png",
                                                               data_suffix=".png",
@@ -58,10 +61,10 @@ trainer = unet.Trainer(net,
 path = trainer.train(train_data_provider,
                      test_data_provider,
                      MODEL_DIR,
-                     restore=True,
+                     restore=RESTORE,
                      restore_path=RESTORE_PATH,
                      dropout=0.75,
-                     training_iters=100,
-                     epochs=50,
+                     training_iters=TRAINING_ITERS,
+                     epochs=EPOCHS,
                      display_step=1
                      )

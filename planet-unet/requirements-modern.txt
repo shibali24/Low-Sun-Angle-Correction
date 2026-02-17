@@ -1,0 +1,42 @@
+# Cleaned requirements - removed 9 unused packages
+# Updated versions for better compatibility while maintaining functionality
+
+# Core dependencies (cannot change)
+tensorflow==1.15.5  # Last TF 1.x version, better modern compatibility than 1.5.0
+numpy==1.18.5       # Compatible with TF 1.15
+
+# Image processing (actively used)
+opencv-python==4.5.5.64  # Upgraded from 3.4.5.20, APIs are backward compatible
+scikit-image==0.17.2     # Upgraded from 0.14.1, test carefully
+Pillow==8.4.0            # Upgraded from 5.3.0
+
+# Scientific computing (actively used)
+scipy==1.5.4             # Compatible with Python 3.6 and numpy 1.18
+scikit-learn==0.24.2     # Upgraded from 0.21.3, metrics API stable
+pandas==1.1.5            # Upgraded from 0.25.3
+
+# Data formats (actively used)
+h5py==2.10.0            # Upgraded from 2.9.0, still uses .value (need to update code later)
+
+# Utilities (actively used)
+matplotlib==3.3.4       # Upgraded from 3.0.2
+tqdm==4.62.3            # Upgraded from 4.42.0
+seaborn==0.11.2         # Upgraded from 0.9.0
+
+# REMOVED (completely unused in codebase):
+# basemap==1.1.0
+# GDAL==2.3.2
+# geopandas==0.4.0
+# georasters==0.5.15
+# rasterio==1.0.13
+# imageio==2.4.1
+# imgaug==0.2.7
+# Keras==2.2.4
+# Keras-Applications==1.0.6
+# Keras-Preprocessing==1.0.5
+# tensorflow-tensorboard==1.5.1 (included with tensorflow)
+
+# Less common packages (keep if needed)
+mpmath==1.1.0
+powerlaw==1.4.6
+xgboost==0.90
