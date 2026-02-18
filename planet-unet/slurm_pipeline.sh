@@ -35,10 +35,10 @@ export PRED_TIMEOUT_SEC=7200
 export CONFIDENCE_THRESHOLD=0.60
 
 # Paths
-export MODEL_DIR="./out_paths/out_path_20191008-adam_l4-f64-dp75_Sentinel"
-export TRAIN_DATA_DIR="./Sentinel-dense-train-test-split-all/train"
-export TEST_DATA_DIR="./Sentinel-dense-train-test-split-all/test"
-export PRED_DATA_DIR="${TEST_DATA_DIR}"
+export MODEL_DIR="${MODEL_DIR:-./out_paths/out_path_20191008-adam_l4-f64-dp75_Sentinel}"
+export TRAIN_DATA_DIR="${TRAIN_DATA_DIR:-./Sentinel-dense-train-test-split-all/train}"
+export TEST_DATA_DIR="${TEST_DATA_DIR:-./Sentinel-dense-train-test-split-all/test}"
+export PRED_DATA_DIR="${PRED_DATA_DIR:-${TEST_DATA_DIR}}"
 
 python run_pipeline_hpc.py
 
