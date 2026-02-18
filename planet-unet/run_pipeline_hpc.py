@@ -86,9 +86,19 @@ def build_geojson():
     features = []
     for filename, pred_array in preds.items():
         iceberg_prob = pred_array[..., 1]
+
+        # U-Net valid convolutions produce output smaller than input.
+        # Compute offset so contour coords align with the original image pixels.
+        row_off = col_off = 0
+        img_path = os.path.join(TEST_DATA_DIR, os.path.basename(filename))
+        if os.path.exists(img_path):
+            img_w, img_h = Image.open(img_path).size
+            row_off = (img_h - iceberg_prob.shape[0]) // 2
+            col_off = (img_w - iceberg_prob.shape[1]) // 2
+
         contours = find_contours(iceberg_prob > CONFIDENCE_THRESHOLD, fully_connected="high")
         for contour_idx, contour in enumerate(contours):
-            coords = [[float(c), float(r)] for r, c in contour]
+            coords = [[float(c) + col_off, float(r) + row_off] for r, c in contour]
             if not coords:
                 continue
             coords.append(coords[0])
