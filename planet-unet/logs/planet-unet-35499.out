@@ -1,0 +1,35 @@
+Host: moose64
+Start: Tue Feb 17 07:55:35 PM EST 2026
+Tue Feb 17 19:55:35 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 590.48.01              Driver Version: 590.48.01      CUDA Version: 13.1     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 2080 Ti     On  |   00000000:D8:00.0 Off |                  N/A |
+| 30%   21C    P8              3W /  250W |       1MiB /  11264MiB |      0%   E. Process |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+=== HPC Pipeline ===
+TRAIN_DATA_DIR: ./Sentinel-dense-train-test-split-all/train
+TEST_DATA_DIR: ./Sentinel-dense-train-test-split-all/test
+MODEL_DIR: ./out_paths/out_path_20191008-adam_l4-f64-dp75_Sentinel
+CONFIDENCE_THRESHOLD: 0.6
+Training model...
+Training done
+Running predictions...
+Prediction done
+GeoJSON polygons: 503
+Overlay tiles: 24
+Pipeline complete.
+End: Tue Feb 17 08:06:11 PM EST 2026

@@ -2,7 +2,7 @@
 #SBATCH --job-name=planet-unet
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=4
 #SBATCH --mem=48G
 #SBATCH --time=12:00:00
 #SBATCH --output=logs/%x-%j.out
@@ -19,7 +19,7 @@ mkdir -p "${PROJECT_DIR}/logs"
 cd "${PROJECT_DIR}"
 
 module load miniconda3
-conda activate "${CONDA_ENV}"
+export PATH="$HOME/.conda/envs/planet-unet/bin:$PATH"
 
 echo "Host: $(hostname)"
 echo "Start: $(date)"
