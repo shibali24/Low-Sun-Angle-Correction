@@ -1,7 +1,25 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Python
 __pycache__/
-*.h5
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# Backup files
 *-BAK.py
+OLD-BAK-*/
+
+# Model outputs (large binary files)
+*.h5
 out_path/
 prediction/
-.ipynb_checkpoints/
-OLD-BAK-*/
+
+# SLURM logs (optional — remove this line if you want logs tracked)
+logs/
+
+# Conda / virtualenv
+.env
+*.egg-info/
